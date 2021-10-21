@@ -1,10 +1,10 @@
 >UCSC Genome Browser assembly ID: rn6
-Sequencing/Assembly provider ID: RGSC Rnor_6.0
-Assembly date: Jul. 2014
-Accession ID: GCA_000001895.4
-NCBI Genome ID: 73 (Rattus norvegicus)
-NCBI Assembly ID: 191871 (Rnor_6.0)
-NCBI BioProject ID: 10629
+>Sequencing/Assembly provider ID: RGSC Rnor_6.0
+>Assembly date: Jul. 2014
+>Accession ID: GCA_000001895.4
+>NCBI Genome ID: 73 (Rattus norvegicus)
+>NCBI Assembly ID: 191871 (Rnor_6.0)
+>NCBI BioProject ID: 10629
 
 # Target: Use iSeeRNA to train new species model, and put it to Sebnif to filter transcript gtf and predict new non-coding RNA
 ## A. Prepare conservation array directory
