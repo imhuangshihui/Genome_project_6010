@@ -31,6 +31,8 @@ slpit wiggle file to chr1..20..XYM (/home/huangsh/software/iSeeRNA-1.2.2/wiggle)
 
 **b. CONSV:** chr1.array, chr2.array...
 
+*/home/huangsh/software/iSeeRNA-1.2.2/conf/rn6.conf*
+
     GENOME  /home/huangsh/software/iSeeRNA-1.2.2/genome/rn6
     CONSV   /home/huangsh/software/iSeeRNA-1.2.2/array
     SVMMODEL        /home/huangsh/software/iSeeRNA-1.2.2/model/rn6.model
