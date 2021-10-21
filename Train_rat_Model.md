@@ -24,7 +24,7 @@ slpit wiggle file to chr1..20..XYM (/home/huangsh/software/iSeeRNA-1.2.2/wiggle)
 
 *user@linux$ util/Wig2Array/auto_Wig2Array.sh  /path/to/wiggle/ /path/for/array/ /file/of/genome/info*
 
-/home/huangsh/software/iSeeRNA-1.2.2/util/Wig2Array/auto_Wig2Array.sh /home/huangsh/software/iSeeRNA-1.2.2/wiggle /home/huangsh/software/iSeeRNA-1.2.2/array /home/huangsh/software/iSeeRNA-1.2.2/genome/rn6/rn6.filter.info
+  /home/huangsh/software/iSeeRNA-1.2.2/util/Wig2Array/auto_Wig2Array.sh /home/huangsh/software/iSeeRNA-1.2.2/wiggle /home/huangsh/software/iSeeRNA-1.2.2/array /home/huangsh/software/iSeeRNA-1.2.2/genome/rn6/rn6.filter.info
 
 ## B. Prepare configure file
 **a. GENOME:** split chr to chr1.fa, chr2.fa...
