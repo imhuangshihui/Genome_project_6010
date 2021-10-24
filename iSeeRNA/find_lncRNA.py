@@ -1,3 +1,9 @@
+'''
+Change name if you want to find mRNA
+Author: Shihui HUANG
+2021.10.24
+'''
+
 with open('lncRNA_ID.txt', 'r') as file1:
     # create an empty list to store ID
     ID = []
