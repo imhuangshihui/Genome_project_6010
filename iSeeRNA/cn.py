@@ -5,6 +5,6 @@ with open('lncRNA.gff', 'r') as fh:
         line[0] = 'chr' + line[0]
         # print(line[0])
         line_str = '\t'.join(line)
-        print(line_str)
+        # print(line_str)
         output.write(line_str)
     output.close()
