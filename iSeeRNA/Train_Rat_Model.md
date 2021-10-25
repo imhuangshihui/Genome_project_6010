@@ -14,7 +14,7 @@
 
 # Target: Use iSeeRNA to train new species model, and put it to Sebnif to filter transcript gtf and predict new non-coding RNA
 ## A. Prepare conservation array directory
-**a. info file:** The 1st col is the chromosome name, and 2nd is the length 
+**a. info file:** The 1st col is the chromosome name, and 2nd is the length -- **cal_chr_length.pl**
 
 **b. wiggle file:** download from [UCSC](https://genome-asia.ucsc.edu/cgi-bin/hgTracks?db=rn6&lastVirtModeType=default&lastVirtModeExtraState=&virtModeType=default&virtMode=0&nonVirtPosition=&position=chr1%3A80607368%2D80638076&hgsid=758048143_f7VNKMTH3nKj2AgUIFwzgHbfYayO) -> Comparative Genomics -> Conservation -> [PhastCons conservation (WIG format)](http://hgdownload.soe.ucsc.edu/goldenPath/rn6/phastCons20way/) -> rn6.phastCons20way.wigFix.gz
 
@@ -27,7 +27,7 @@ slpit wiggle file to chr1..20..XYM (/home/huangsh/software/iSeeRNA-1.2.2/wiggle)
     /home/huangsh/software/iSeeRNA-1.2.2/util/Wig2Array/auto_Wig2Array.sh /home/huangsh/software/iSeeRNA-1.2.2/wiggle /home/huangsh/software/iSeeRNA-1.2.2/array /home/huangsh/software/iSeeRNA-1.2.2/genome/rn6/rn6.filter.info
 
 ## B. Prepare configure file
-**a. GENOME:** split chr to chr1.fa, chr2.fa...
+**a. GENOME:** split chr to chr1.fa, chr2.fa...   --- **get_fasta_jessie.py**
 
 **b. CONSV:** chr1.array, chr2.array...
 
@@ -45,6 +45,8 @@ slpit wiggle file to chr1..20..XYM (/home/huangsh/software/iSeeRNA-1.2.2/wiggle)
 Refseq non-coding RNA download from Ensemble http://asia.ensembl.org/Rattus_norvegicus/Info/Index -> Downloads -> FTP Download -> Ensemble FTP site -> [Index of /pub/current_gff3/rattus_norvegicus/]
 
 **染色体中的lnc_RNA总数为4622条，mRNA为28897条，为了使二者达到1：1的比例，chro1-17取mRNA219条，chr18-X取218条，chrY\chrM各取其全部分别为14、13条**
+
+如果不是提前根据ID提取，而是用所有ID得到总的lncRNA.gff文件再从中提取1000条的话，可用**1000.py**
 
 **b. extract gene ID of lnc_RNA： extract_ID.sh**
 
