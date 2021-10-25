@@ -54,3 +54,24 @@ Refseq non-coding RNA download from Ensemble http://asia.ensembl.org/Rattus_norv
 
 *another way is to use grep: find_lncRNA.sh(slow)*
 
+**Due to the chromosome name is not identical with the genome, we need to change it: cn.py**
+
+    1       ensembl lnc_RNA 396700  409676  .       +       .       ID=transcript:ENSRNOT00000044187;Parent=gene:ENSRNOG00000046319;Name=AABR07000046.1-202;biotype=processed_transcript;transcript_id=ENSRNOT00000044187;version=4
+    
+**to**
+
+    chr1    ensembl lnc_RNA 396700  409676  .       +       .       ID=transcript:ENSRNOT00000044187;Parent=gene:ENSRNOG00000046319;Name=AABR07000046.1-202;biotype=processed_transcript;transcript_id=ENSRNOT00000044187;version=4
+    
+**trainModel.pl**
+
+*perl trainNewModel.pl -c configure_file -n lincRNA.gff -p mRNA.gff -o work_dir*
+
+    perl /home/huangsh/software/iSeeRNA-1.2.2/util/trainNewModel.pl -c /home/huangsh/software/iSeeRNA-1.2.2/conf/rn6.conf -n /home/huangsh/data/rat/ensemble/lncRNA.gff -p /home/huangsh/data/rat/ensemble/mRNA.gff -o /home/huangsh/software/iSeeRNA-1.2.2/3train_rn6/
+    
+    cd 3train_rn6 && make
+    
+and output file like these:
+
+![图片](https://user-images.githubusercontent.com/76728625/138637817-83271c7f-9ac7-4df1-b7d0-76278e893234.png)
+
+Done
