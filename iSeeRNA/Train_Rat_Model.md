@@ -46,15 +46,15 @@ Refseq non-coding RNA download from Ensemble http://asia.ensembl.org/Rattus_norv
 
 **染色体中的lnc_RNA总数为4622条，mRNA为28897条，为了使二者达到1：1的比例，chro1-17取mRNA219条，chr18-X取218条，chrY\chrM各取其全部分别为14、13条**
 
-*extract gene ID of lnc_RNA： extract_ID.sh*
+**b. extract gene ID of lnc_RNA： extract_ID.sh**
 
     cat Rattus_norvegicus.Rnor_6.0.104.chromosome.1.gff3 | awk '$3=="lnc_RNA"{print $9}' | cut -d ';' -f1 | cut -d ':' -f2 > 1lncrna_id.txt
     
-*extract lncRNA and its exon based on ID: find_lncRNA.py(recommend)*
+**c. extract lncRNA and its exon based on ID: find_lncRNA.py(recommend)**
 
 *another way is to use grep: find_lncRNA.sh(slow)*
 
-**Due to the chromosome name is not identical with the genome, we need to change it: cn.py**
+**d. Due to the chromosome name is not identical with the genome, we need to change it: cn.py**
 
     1       ensembl lnc_RNA 396700  409676  .       +       .       ID=transcript:ENSRNOT00000044187;Parent=gene:ENSRNOG00000046319;Name=AABR07000046.1-202;biotype=processed_transcript;transcript_id=ENSRNOT00000044187;version=4
     
@@ -62,7 +62,7 @@ Refseq non-coding RNA download from Ensemble http://asia.ensembl.org/Rattus_norv
 
     chr1    ensembl lnc_RNA 396700  409676  .       +       .       ID=transcript:ENSRNOT00000044187;Parent=gene:ENSRNOG00000046319;Name=AABR07000046.1-202;biotype=processed_transcript;transcript_id=ENSRNOT00000044187;version=4
     
-**trainModel.pl**
+**e. trainModel.pl**
 
 *perl trainNewModel.pl -c configure_file -n lincRNA.gff -p mRNA.gff -o work_dir*
 
@@ -74,4 +74,4 @@ and output file like these:
 
 ![图片](https://user-images.githubusercontent.com/76728625/138637817-83271c7f-9ac7-4df1-b7d0-76278e893234.png)
 
-Done
+**f. Done. Check the rn6.conf file and use it directly.**
