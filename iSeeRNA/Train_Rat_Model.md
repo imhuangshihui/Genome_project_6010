@@ -44,13 +44,13 @@ slpit wiggle file to chr1..20..XYM (/home/huangsh/software/iSeeRNA-1.2.2/wiggle)
 
 Refseq non-coding RNA download from Ensemble http://asia.ensembl.org/Rattus_norvegicus/Info/Index -> Downloads -> FTP Download -> Ensemble FTP site -> [Index of /pub/current_gff3/rattus_norvegicus/]
 
-**染色体中的lnc_RNA总数为4622条，mRNA为28897条，为了使二者达到1：1的比例，chro1-17取mRNA219条，chr18-X取218条，chrY\chrM各取其全部分别为14、13条**
+**染色体中的lnc_RNA总数为4622条，lincRNA为3304条（去掉了冗余部分），mRNA为28897条**
 
 如果不是提前根据ID提取，而是用所有ID得到总的lncRNA.gff文件再从中提取1000条的话，可用**1000.py**
 
 **b. extract gene ID of lnc_RNA： extract_ID.sh**
 
-    cat Rattus_norvegicus.Rnor_6.0.104.chromosome.1.gff3 | awk '$3=="lnc_RNA"{print $9}' | cut -d ';' -f1 | cut -d ':' -f2 > 1lncrna_id.txt
+    cat Rattus_norvegicus.Rnor_6.0.104.chromosome.${i}.gff3 | awk '$3=="mRNA"{print}' | grep 'lincRNA' | cut -d ';' -f1 | cut -d ':' -f2 > ${i}lincRNA_id.txt
     
 **c. extract lncRNA and its exon based on ID: find_lncRNA.py(recommend)**
 
