@@ -86,4 +86,7 @@ and output file like these:
 
 ![图片](https://user-images.githubusercontent.com/76728625/138637817-83271c7f-9ac7-4df1-b7d0-76278e893234.png)
 
-**f. Done. Check the rn6.conf file and use it directly.**
+**f. Done. **
+After this command finishes, the output svm parameter file and svm model file are generated using the path
+defined in your configuration file. This configuration file can be directly used by iSeeRNA without any
+changes made.
