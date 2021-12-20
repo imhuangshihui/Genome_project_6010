@@ -46,7 +46,17 @@ Refseq non-coding RNA download from Ensemble http://asia.ensembl.org/Rattus_norv
 
 **染色体中的lnc_RNA总数为4622条，lincRNA为3304条（去掉了冗余部分），mRNA为28897条**
 
-如果不是提前根据ID提取，而是用所有ID得到总的lncRNA.gff文件再从中提取1000条的话，可用**1000.py**
+**(b)提前根据ID提取，而是用所有ID得到总的lncRNA.gff文件再从中提取1000条的话，可用**1000.py**
+
+    python 1000.py
+    
+    output:"rna_num:  1001, line_num:  10927"
+    
+    cat mRNA.gff | head -n 10927 > 1000mRNA.gff
+    
+去掉mRNA.gff中的five_prime_UTR & three_prime_UTR
+
+    cat 1000mRNA.gff | awk '{if($3!~"^five"){print $0}}' | awk '{if($3!~"^three"){print $0}}' > mRNA1000.gff
 
 **b. extract gene ID of lnc_RNA： extract_ID.sh**
 
