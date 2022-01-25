@@ -1,0 +1,209 @@
+(base) huangsh@sebnif:~/software/iSeeRNA-1.2.2$ perl util/trainNewModel.pl -c conf/rn6.conf -n lincRNA_transcript.1000.chr1to15.gff -p mRNA_transcript.1000.onlychr1.gff -o train_model_output_rn6_20220125_1843
+Done. Change directory to train_model_output_rn6_20220125_1843 and run make.
+The final scale-parameter file is '/home/huangsh/software/iSeeRNA-1.2.2/model/rn6.model' and the final model is '/home/huangsh/software/iSeeRNA-1.2.2/model/rn6.scale.param'.
+
+(base) huangsh@sebnif:~/software/iSeeRNA-1.2.2$ cd train_model_output_rn6^C
+(base) huangsh@sebnif:~/software/iSeeRNA-1.2.2$ cd train_model_output_rn6_20220125_1843/
+(base) huangsh@sebnif:~/software/iSeeRNA-1.2.2/train_model_output_rn6_20220125_1843$ ll
+total 16
+drwxr-xr-x 2 huangsh GNBF5040 4096 Jan 25 18:43 linc_consv
+-rw-r--r-- 1 huangsh GNBF5040 5046 Jan 25 18:43 Makefile
+drwxr-xr-x 2 huangsh GNBF5040 4096 Jan 25 18:43 m_consv
+(base) huangsh@sebnif:~/software/iSeeRNA-1.2.2/train_model_output_rn6_20220125_1843$ vi Makefile
+(base) huangsh@sebnif:~/software/iSeeRNA-1.2.2/train_model_output_rn6_20220125_1843$ make
+/home/huangsh/software/iSeeRNA-1.2.2/util/../bin/gffread -o /dev/stdout /home/huangsh/software/iSeeRNA-1.2.2/mRNA_transcript.1000.onlychr1.gff | perl -ne 'print unless /^#/' | perl -ne '$_="chr$_" unless /^chr/; $_=~s/Parent=/transcript_id /; print ' > mRNA_transcript.1000.onlychr1.gtf
+/home/huangsh/software/iSeeRNA-1.2.2/util/../bin/gffread -g /home/huangsh/software/iSeeRNA-1.2.2/genome/rn6 -w mRNA_transcript.1000.onlychr1.fa mRNA_transcript.1000.onlychr1.gtf
+perl /home/huangsh/software/iSeeRNA-1.2.2/util/../bin/fa2list.pl mRNA_transcript.1000.onlychr1.fa mRNA_transcript.1000.onlychr1.list
+/home/huangsh/software/iSeeRNA-1.2.2/util/../bin/txCdsPredict -anyStart mRNA_transcript.1000.onlychr1.fa mRNA_transcript.1000.onlychr1.orf
+perl /home/huangsh/software/iSeeRNA-1.2.2/util/../bin/fa2feature.pl mRNA_transcript.1000.onlychr1.fa mRNA_transcript.1000.onlychr1.feature
+cd linc_consv && perl /home/huangsh/software/iSeeRNA-1.2.2/util/../bin/prepare_consv.pl ../mRNA_transcript.1000.onlychr1.gtf /home/huangsh/software/iSeeRNA-1.2.2/consv/rn6 /home/huangsh/software/iSeeRNA-1.2.2/util/../bin/calcConsv all_mRNA_transcript.1000.onlychr1.consv > Makefile && cd ..
+Loading gtf ...
+Loading gtf done...
+Writing chr1 ...Done 1000 .
+cd linc_consv && make -j 1 && cd ..
+make[1]: Entering directory '/home/huangsh/software/iSeeRNA-1.2.2/train_model_output_rn6_20220125_1843/linc_consv'
+/home/huangsh/software/iSeeRNA-1.2.2/util/../bin/calcConsv /home/huangsh/software/iSeeRNA-1.2.2/consv/rn6/chr1.array chr1.dat chr1.consv
+Loading array : 282763075
+Loading anno file ...
+All Done.
+cat chr*.consv > ../all_mRNA_transcript.1000.onlychr1.consv
+make[1]: Leaving directory '/home/huangsh/software/iSeeRNA-1.2.2/train_model_output_rn6_20220125_1843/linc_consv'
+perl /home/huangsh/software/iSeeRNA-1.2.2/util/../bin/merge.pl mRNA_transcript.1000.onlychr1.list all_mRNA_transcript.1000.onlychr1.consv mRNA_transcript.1000.onlychr1.orf mRNA_transcript.1000.onlychr1.feature -1 > mRNA_transcript.1000.onlychr1.svm
+Length for transcript:ENSRNOT00000085560 is 177, skip.
+Loading   LIST  file done. Totally 999 records.
+Loading   CONSV file done. Totally 999 records.
+Loading    ORF  file done. Totally 999 records.
+Loading FEATURE file done. Totally 999 records.
+
+Done.Totally 999 records written.
+
+/home/huangsh/software/iSeeRNA-1.2.2/util/../bin/gffread -o /dev/stdout /home/huangsh/software/iSeeRNA-1.2.2/lincRNA_transcript.1000.chr1to15.gff | perl -ne 'print unless /^#/' | perl -ne '$_="chr$_" unless /^chr/; $_=~s/Parent=/transcript_id /; print ' > lincRNA_transcript.1000.chr1to15.gtf
+/home/huangsh/software/iSeeRNA-1.2.2/util/../bin/gffread -g /home/huangsh/software/iSeeRNA-1.2.2/genome/rn6 -w lincRNA_transcript.1000.chr1to15.fa lincRNA_transcript.1000.chr1to15.gtf
+^[Aperl /home/huangsh/software/iSeeRNA-1.2.2/util/../bin/fa2list.pl lincRNA_transcript.1000.chr1to15.fa lincRNA_transcript.1000.chr1to15.list
+/home/huangsh/software/iSeeRNA-1.2.2/util/../bin/txCdsPredict -anyStart lincRNA_transcript.1000.chr1to15.fa lincRNA_transcript.1000.chr1to15.orf
+perl /home/huangsh/software/iSeeRNA-1.2.2/util/../bin/fa2feature.pl lincRNA_transcript.1000.chr1to15.fa lincRNA_transcript.1000.chr1to15.feature
+cd m_consv && perl /home/huangsh/software/iSeeRNA-1.2.2/util/../bin/prepare_consv.pl ../lincRNA_transcript.1000.chr1to15.gtf /home/huangsh/software/iSeeRNA-1.2.2/consv/rn6 /home/huangsh/software/iSeeRNA-1.2.2/util/../bin/calcConsv all_lincRNA_transcript.1000.chr1to15.consv > Makefile && cd ..
+Loading gtf ...
+Loading gtf done...
+Writing chr11 ...Done 74 .
+Writing chr10 ...Done 150 .
+Writing chr1 ...Done 343 .
+Writing chr15 ...Done 91 .
+Writing chr13 ...Done 108 .
+Writing chr12 ...Done 115 .
+Writing chr14 ...Done 119 .
+cd m_consv && make -j 1 && cd ..
+make[1]: Entering directory '/home/huangsh/software/iSeeRNA-1.2.2/train_model_output_rn6_20220125_1843/m_consv'
+/home/huangsh/software/iSeeRNA-1.2.2/util/../bin/calcConsv /home/huangsh/software/iSeeRNA-1.2.2/consv/rn6/chr11.array chr11.dat chr11.consv
+Loading array : 90463844
+Loading anno file ...
+All Done.
+/home/huangsh/software/iSeeRNA-1.2.2/util/../bin/calcConsv /home/huangsh/software/iSeeRNA-1.2.2/consv/rn6/chr10.array chr10.dat chr10.consv
+Loading array : 112626472
+Loading anno file ...
+All Done.
+/home/huangsh/software/iSeeRNA-1.2.2/util/../bin/calcConsv /home/huangsh/software/iSeeRNA-1.2.2/consv/rn6/chr1.array chr1.dat chr1.consv
+Loading array : 282763075
+Loading anno file ...
+All Done.
+/home/huangsh/software/iSeeRNA-1.2.2/util/../bin/calcConsv /home/huangsh/software/iSeeRNA-1.2.2/consv/rn6/chr15.array chr15.dat chr15.consv
+Loading array : 111246240
+Loading anno file ...
+All Done.
+/home/huangsh/software/iSeeRNA-1.2.2/util/../bin/calcConsv /home/huangsh/software/iSeeRNA-1.2.2/consv/rn6/chr13.array chr13.dat chr13.consv
+Loading array : 114033959
+Loading anno file ...
+All Done.
+/home/huangsh/software/iSeeRNA-1.2.2/util/../bin/calcConsv /home/huangsh/software/iSeeRNA-1.2.2/consv/rn6/chr12.array chr12.dat chr12.consv
+Loading array : 52716771
+Loading anno file ...
+All Done.
+/home/huangsh/software/iSeeRNA-1.2.2/util/../bin/calcConsv /home/huangsh/software/iSeeRNA-1.2.2/consv/rn6/chr14.array chr14.dat chr14.consv
+Loading array : 115493447
+Loading anno file ...
+All Done.
+cat chr*.consv > ../all_lincRNA_transcript.1000.chr1to15.consv
+make[1]: Leaving directory '/home/huangsh/software/iSeeRNA-1.2.2/train_model_output_rn6_20220125_1843/m_consv'
+perl /home/huangsh/software/iSeeRNA-1.2.2/util/../bin/merge.pl lincRNA_transcript.1000.chr1to15.list all_lincRNA_transcript.1000.chr1to15.consv lincRNA_transcript.1000.chr1to15.orf lincRNA_transcript.1000.chr1to15.feature 1 > lincRNA_transcript.1000.chr1to15.svm
+Length for transcript:ENSRNOT00000087887 is 176, skip.
+Length for transcript:ENSRNOT00000083664 is 181, skip.
+Length for transcript:ENSRNOT00000085639 is 161, skip.
+Length for transcript:ENSRNOT00000087059 is 167, skip.
+Length for transcript:ENSRNOT00000082414 is 187, skip.
+Length for transcript:ENSRNOT00000089344 is 124, skip.
+Length for transcript:ENSRNOT00000089416 is 183, skip.
+Length for transcript:ENSRNOT00000084574 is 150, skip.
+Length for transcript:ENSRNOT00000080451 is 184, skip.
+Length for transcript:ENSRNOT00000081905 is 170, skip.
+Length for transcript:ENSRNOT00000092128 is 142, skip.
+Length for transcript:ENSRNOT00000080393 is 147, skip.
+Length for transcript:ENSRNOT00000084269 is 189, skip.
+Length for transcript:ENSRNOT00000086165 is 165, skip.
+Length for transcript:ENSRNOT00000089731 is 111, skip.
+Length for transcript:ENSRNOT00000089769 is 116, skip.
+Length for transcript:ENSRNOT00000077906 is 190, skip.
+Length for transcript:ENSRNOT00000080895 is 180, skip.
+Length for transcript:ENSRNOT00000091260 is 158, skip.
+Length for transcript:ENSRNOT00000081320 is 156, skip.
+Length for transcript:ENSRNOT00000090045 is 186, skip.
+Length for transcript:ENSRNOT00000090640 is 119, skip.
+Length for transcript:ENSRNOT00000077519 is 172, skip.
+Length for transcript:ENSRNOT00000080182 is 149, skip.
+Length for transcript:ENSRNOT00000077989 is 122, skip.
+Length for transcript:ENSRNOT00000081785 is 182, skip.
+Length for transcript:ENSRNOT00000079361 is 130, skip.
+Length for transcript:ENSRNOT00000089322 is 134, skip.
+Length for transcript:ENSRNOT00000086196 is 137, skip.
+Length for transcript:ENSRNOT00000090175 is 147, skip.
+Length for transcript:ENSRNOT00000083213 is 125, skip.
+Length for transcript:ENSRNOT00000086379 is 132, skip.
+Length for transcript:ENSRNOT00000089444 is 169, skip.
+Length for transcript:ENSRNOT00000083512 is 137, skip.
+Length for transcript:ENSRNOT00000081332 is 176, skip.
+Length for transcript:ENSRNOT00000078276 is 175, skip.
+Length for transcript:ENSRNOT00000077704 is 175, skip.
+Length for transcript:ENSRNOT00000080184 is 132, skip.
+Length for transcript:ENSRNOT00000083501 is 162, skip.
+Length for transcript:ENSRNOT00000087988 is 190, skip.
+Length for transcript:ENSRNOT00000086326 is 125, skip.
+Length for transcript:ENSRNOT00000089628 is 90, skip.
+Length for transcript:ENSRNOT00000087357 is 145, skip.
+Length for transcript:ENSRNOT00000080074 is 193, skip.
+Length for transcript:ENSRNOT00000090379 is 179, skip.
+Length for transcript:ENSRNOT00000081483 is 112, skip.
+Length for transcript:ENSRNOT00000087264 is 177, skip.
+Length for transcript:ENSRNOT00000088427 is 152, skip.
+Length for transcript:ENSRNOT00000076905 is 140, skip.
+Length for transcript:ENSRNOT00000078550 is 162, skip.
+Length for transcript:ENSRNOT00000088977 is 190, skip.
+Length for transcript:ENSRNOT00000079817 is 162, skip.
+Length for transcript:ENSRNOT00000085706 is 137, skip.
+Length for transcript:ENSRNOT00000092828 is 168, skip.
+Length for transcript:ENSRNOT00000086817 is 130, skip.
+Length for transcript:ENSRNOT00000078479 is 132, skip.
+Length for transcript:ENSRNOT00000088845 is 177, skip.
+Length for transcript:ENSRNOT00000085948 is 135, skip.
+Length for transcript:ENSRNOT00000079971 is 178, skip.
+Length for transcript:ENSRNOT00000091867 is 136, skip.
+Length for transcript:ENSRNOT00000078696 is 141, skip.
+Length for transcript:ENSRNOT00000078522 is 107, skip.
+Length for transcript:ENSRNOT00000078024 is 155, skip.
+Length for transcript:ENSRNOT00000083098 is 138, skip.
+Length for transcript:ENSRNOT00000091589 is 129, skip.
+Length for transcript:ENSRNOT00000080022 is 179, skip.
+Length for transcript:ENSRNOT00000089890 is 116, skip.
+Length for transcript:ENSRNOT00000089937 is 158, skip.
+Length for transcript:ENSRNOT00000089173 is 169, skip.
+Length for transcript:ENSRNOT00000090766 is 115, skip.
+Length for transcript:ENSRNOT00000082379 is 163, skip.
+Length for transcript:ENSRNOT00000083639 is 148, skip.
+Length for transcript:ENSRNOT00000082409 is 193, skip.
+Length for transcript:ENSRNOT00000085399 is 134, skip.
+Length for transcript:ENSRNOT00000077997 is 134, skip.
+Loading   LIST  file done. Totally 925 records.
+Loading   CONSV file done. Totally 925 records.
+Loading    ORF  file done. Totally 925 records.
+Loading FEATURE file done. Totally 925 records.
+
+Done.Totally 925 records written.
+
+cat mRNA_transcript.1000.onlychr1.svm lincRNA_transcript.1000.chr1to15.svm > all.svm
+/home/huangsh/software/iSeeRNA-1.2.2/util/../bin/svm-scale -l 0 -s scale.param all.svm > all.scaled
+/home/huangsh/software/iSeeRNA-1.2.2/util/../bin/svm-train -c 512 -g 1 -b 1 all.scaled all.model
+.......................*.............*
+optimization finished, #iter = 36815
+nu = 0.136093
+obj = -90919.673944, rho = -10.555844
+nSV = 297, nBSV = 151
+Total nSV = 297
+.......................*............*
+optimization finished, #iter = 35662
+nu = 0.144754
+obj = -99227.695363, rho = 10.794973
+nSV = 316, nBSV = 170
+Total nSV = 316
+....................*.............*
+optimization finished, #iter = 33943
+nu = 0.132749
+obj = -90067.182275, rho = 8.006038
+nSV = 291, nBSV = 148
+Total nSV = 291
+......................*..........*
+optimization finished, #iter = 32726
+nu = 0.133041
+obj = -88749.628068, rho = 10.537931
+nSV = 287, nBSV = 151
+Total nSV = 287
+.....................*..............*
+optimization finished, #iter = 35223
+nu = 0.139126
+obj = -94162.662165, rho = 11.197254
+nSV = 311, nBSV = 162
+Total nSV = 311
+.............................*................*
+optimization finished, #iter = 45617
+nu = 0.140506
+obj = -120567.245849, rho = 10.445324
+nSV = 365, nBSV = 206
+Total nSV = 365
+cp all.model /home/huangsh/software/iSeeRNA-1.2.2/model/rn6.model && cp scale.param /home/huangsh/software/iSeeRNA-1.2.2/model/rn6.scale.param && touch all.finished
