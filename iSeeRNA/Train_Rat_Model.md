@@ -102,19 +102,22 @@ Refseq non-coding RNA download from Ensemble http://asia.ensembl.org/Rattus_norv
 
 *因为lincRNA比较少，所以提取前1000条时已经覆盖到了第15条染色体的lincRNA*
     
-**e. trainModel.pl**
+### b. trainModel.pl
 
 *perl trainNewModel.pl -c configure_file -n lincRNA.gff -p mRNA.gff -o work_dir*
 
-    perl /home/huangsh/software/iSeeRNA-1.2.2/util/trainNewModel.pl -c /home/huangsh/software/iSeeRNA-1.2.2/conf/rn6.conf -n /home/huangsh/data/rat/ensemble/lncRNA.gff -p /home/huangsh/data/rat/ensemble/mRNA.gff -o /home/huangsh/software/iSeeRNA-1.2.2/3train_rn6/
+    perl util/trainNewModel.pl -c conf/rn6.conf -n lincRNA_transcript.1000.chr1to15.gff -p mRNA_transcript.1000.onlychr1.gff -o train_model_output_rn6_20220125_1843
     
-    cd 3train_rn6 && make
+    cd train_model_output_rn6_20220125_1843 && make
     
 and output file like these:
 
-![图片](https://user-images.githubusercontent.com/76728625/138637817-83271c7f-9ac7-4df1-b7d0-76278e893234.png)
+![图片](https://user-images.githubusercontent.com/76728625/150964513-4cebd04f-7ba6-45b9-8aba-e1bb0305293a.png)
 
-**f. Done. **
+### f. Done. **
+
+训练的屏幕输出结果在 train_model_output 文件夹下
+
 After this command finishes, the output svm parameter file and svm model file are generated using the path
 defined in your configuration file. This configuration file can be directly used by iSeeRNA without any
 changes made.
