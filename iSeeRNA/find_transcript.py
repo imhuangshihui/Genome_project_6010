@@ -1,18 +1,22 @@
 '''
-Change name if you want to find mRNA
+usage: python find_transcript.py ID.txt annot.gff3 output
+sys.argv[1]: ID.txt
+sys.argv[2]: annot.gff3
+sys.argv[3]: output
 Author: Shihui HUANG
 2021.10.24
 '''
+import sys
 
-with open('lncRNA_ID.txt', 'r') as file1:
+with open(sys.argv[1], 'r') as file1:
     # create an empty list to store ID
     ID = []
     for line in file1:
         line = line.strip('\n')
         ID.append(line)
         # print(ID)
-with open('Rattus_norvegicus.Rnor_6.0.104.chr.gff3', 'r') as file2:
-    output = open('lncRNA.gff', 'w')
+with open(sys.argv[2], 'r') as file2:
+    output = open(sys.argv[3], 'w')
     for line in file2:
         line = line.split('\t')
         t1 = line[-1].split(';')
