@@ -27,7 +27,7 @@ slpit wiggle file to chr1..20..XYM (/home/huangsh/software/iSeeRNA-1.2.2/wiggle)
     /home/huangsh/software/iSeeRNA-1.2.2/util/Wig2Array/auto_Wig2Array.sh /home/huangsh/software/iSeeRNA-1.2.2/wiggle /home/huangsh/software/iSeeRNA-1.2.2/consv/rn6 /home/huangsh/software/iSeeRNA-1.2.2/genome/rn6/rn6.filter.info
 
 ## B. Prepare configure file
-**a. GENOME:** split chr to chr1.fa, chr2.fa...   --- **get_fasta_jessie.py**
+**a. GENOME:** split chr to chr1.fa, chr2.fa...   --- **get_fasta.py**
 
 **b. CONSV:** chr1.array, chr2.array...
 
