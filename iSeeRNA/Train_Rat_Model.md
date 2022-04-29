@@ -114,10 +114,43 @@ and output file like these:
 
 ![图片](https://user-images.githubusercontent.com/76728625/150964513-4cebd04f-7ba6-45b9-8aba-e1bb0305293a.png)
 
-### f. Done. **
-
 训练的屏幕输出结果在 train_model_output 文件夹下
 
 After this command finishes, the output svm parameter file and svm model file are generated using the path
 defined in your configuration file. This configuration file can be directly used by iSeeRNA without any
 changes made.
+
+## D. Use one of the samples(G941) to test the rat model **
+
+*user@linux$ perl iSeeRNA -c CONFIGURATION_FILE -i INPUT_ANNOTATION -o OUTPUT_DIRECTORY*
+
+This command will instruct iSeeRNA to load the file CONFIGURATION_FILE as
+configuration file (-c option), to use INPUT_ANNOTATION as input annotation
+file (-i option) and to create sub-directories, makefile and other required
+files in the OUTPUT_DIRECTORY (-o option).The input GTF/GFF files for iSeeRNA 
+can be generated from the output file of
+de novo transcript assembly program such as Cufflinks.
+
+    perl ./iSeeRNA -c conf/rn6.conf -i /home/huangsh/3_Assembly/cufflink_all/G941/transcript.only_chr.gtf -o iseerna_test_G941_1_20220423/
+    
+The main output of the prediction is "example.result" which has three
+fields separated by tab. The first field is the transcript ID, the second
+is the predicted types of the transcripts (noncoding or coding), and the third
+field is the probability of the predicted category of transcripts specified
+in the field two. The score is a number ranging from 0 to 1 and if the
+prediction is 'coding', the score should be less than 0.5 and noncoding otherwise.
+If the prediction is 'noncoding', a higher (close to 1) score means higher confidence
+But if the prediction is 'coding', a lower (close to 0) score means higher confidence.
+
+Here is the testing example output :
+
+    #id     type    score
+    CUFF.28053.1    coding  0.0411714
+    CUFF.22215.2    noncoding       0.999991
+    CUFF.370.2      coding  0.0379181
+    CUFF.20080.1    noncoding       0.948769
+    CUFF.4811.1     noncoding       0.999783
+    CUFF.34724.1    coding  0.0221727
+    CUFF.3197.1     coding  0.0383758
+    CUFF.18196.1    coding  0.082468
+    CUFF.7735.1     noncoding       0.962556
