@@ -120,7 +120,7 @@ After this command finishes, the output svm parameter file and svm model file ar
 defined in your configuration file. This configuration file can be directly used by iSeeRNA without any
 changes made.
 
-## D. Use one of the samples(G941) to test the rat model **
+## D. Use one of the samples(G941) to test the rat model
 
 *user@linux$ perl iSeeRNA -c CONFIGURATION_FILE -i INPUT_ANNOTATION -o OUTPUT_DIRECTORY*
 
